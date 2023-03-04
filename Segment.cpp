@@ -1,4 +1,4 @@
-#include "Header/Segment.h"
+#include "Segment.h"
 
 Segment::Segment(const Vecteur2D& a, const Vecteur2D& b, const Couleur& couleur)
     : Forme(couleur), a_(a), b_(b) {}
@@ -31,4 +31,19 @@ bool Segment::intersection(const Segment& s) const {
     double prod3 = v1.prodVect(v2);
     // si les produits vectoriels sont de signes différents, les segments se croisent
     return ((prod1 * prod2 < 0) && (prod3 * prod2 < 0));
+}
+
+void Segment::Translate(double dx, double dy) {
+    a_.Translate(dx, dy);
+    b_.Translate(dx, dy);
+}
+
+void Segment::homothetie(const double& k, const Vecteur2D& centre) {
+    a_.homothetie(k, centre);
+    b_.homothetie(k, centre);
+}
+
+void Segment::rotation(const double& angle, const Vecteur2D& centre) {
+    a_.rotation(angle, centre);
+    b_.rotation(angle, centre);
 }

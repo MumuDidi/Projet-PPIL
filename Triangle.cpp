@@ -22,3 +22,21 @@ std::ostream& operator<<(std::ostream& os, const Triangle& t) {
     os << t.toString() << endl;
     return os;
 }
+
+void Triangle::Translate(double dx, double dy){
+    a_.Translate(dx, dy);
+    b_.Translate(dx, dy);
+    c_.Translate(dx, dy);
+}
+
+void Triangle::homothetie(const double& k, const Vecteur2D& centre){
+    a_.homothetie(k, centre);
+    b_.homothetie(k, centre);
+    c_.homothetie(k, centre);
+}
+
+void Triangle::rotation(const double& angle, const Vecteur2D& centre){
+    a_.rotation(angle, centre);
+    b_.rotation(angle, centre);
+    c_.rotation(angle, centre);
+}

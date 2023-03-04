@@ -11,7 +11,9 @@ public:
     std::string toString() const override;
     bool autoIntersection() const;
     friend std::ostream& operator<<(std::ostream& os, const Polygone& poly);
-
+    void Translate(double dx, double dy) override;
+    void homothetie(const double& k, const Vecteur2D& centre);
+    void rotation(const double& angle, const Vecteur2D& centre);
 private:
      std::vector<Vecteur2D> sommets_;
 };

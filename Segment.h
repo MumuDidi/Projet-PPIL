@@ -9,7 +9,9 @@ public:
     std::string toString() const override;
     bool intersection(const Segment& s) const;
     friend std::ostream& operator<<(std::ostream& os, const Segment& seg);
-
+    void Translate(double dx, double dy) override;
+    void homothetie(const double& k, const Vecteur2D& centre);
+    void rotation(const double& angle, const Vecteur2D& centre);
 private:
     Vecteur2D a_, b_;
 };

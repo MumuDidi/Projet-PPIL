@@ -28,3 +28,4 @@ std::string couleurToString(Couleur couleur) {
         return "unknown";
     }
 }
+

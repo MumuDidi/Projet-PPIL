@@ -1,4 +1,6 @@
 #include "Polygone.h"
+#include "Vecteur2D.h"
+#include "Segment.h"
 #include <cmath>
 #include <sstream>
 
@@ -29,7 +31,6 @@ std::string Polygone::toString() const
         oss << sommet << ", ";
     }
     oss << "couleur : " << couleurToString(couleur_) << ", aire : " << aire() << ")";
-    oss << "Intersection ?" << autoIntersection() << endl;
     return oss.str();
 }
 
@@ -50,4 +51,22 @@ bool Polygone::autoIntersection() const {
         }
     }
     return false;
+}
+
+void Polygone::Translate(double dx, double dy) {
+    for (auto& sommet : sommets_) {
+        sommet.Translate(dx, dy);
+    }
+}
+
+void Polygone::homothetie(const double& k, const Vecteur2D& centre) {
+    for (auto& sommet : sommets_) {
+        sommet.homothetie(k, centre);
+    }
+}
+
+void Polygone::rotation(const double& angle, const Vecteur2D& centre) {
+    for (auto& sommet : sommets_) {
+        sommet.rotation(angle, centre);
+    }
 }
