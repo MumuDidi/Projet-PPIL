@@ -1,51 +1,43 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
-#include "Segment.h"
-#include "Cercle.h"
-#include "Triangle.h"
-#include "Polygone.h"
-#include "Vecteur2D.h"
-#include "Groupe.h"
+#include "SegmentLoader.h"
+#include "TriangleLoader.h"
+#include "CercleLoader.h"
+
+
 #include <cmath>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
 
 
 
 int main() {
-	// création des formes géométriques
+	// chargement des formes depuis un fichier
+	Loader* Loader1;
+	Loader_COR* TriangleLoader1, * SegmentLoader1, * CercleLoader1;
+	TriangleLoader1 = new TriangleLoader(NULL);
+	SegmentLoader1 = new SegmentLoader(TriangleLoader1);
+	CercleLoader1 = new CercleLoader(SegmentLoader1);
 
-	Segment s1(Vecteur2D(0, 0), Vecteur2D(1, 1), Couleur::RED);
-	Cercle c1(Vecteur2D(2, 2), 1, Couleur::BLUE);
-	Triangle t1(Vecteur2D(0, 0), Vecteur2D(1, 0), Vecteur2D(0, 1), Couleur::GREEN);
-	vector<Vecteur2D> points = { Vecteur2D(0, 0), Vecteur2D(1, 0), Vecteur2D(1,1),Vecteur2D(0,1) };
-	Polygone p1(points, Couleur::YELLOW);
-	vector<Forme*> formes = { &s1, &c1, &t1, &p1 };
-	Groupe g1(formes, Couleur::BLACK);
+	Loader1 = CercleLoader1;
+	string line;
 
+	vector<Forme*> Vff;
+	ifstream f("Formes.txt");
+	while (getline(f,line)) {
+		cout << line << endl;
+		Vff.push_back(Loader1->Load(line));	
+	}
 
-	// affichage des formes géométriques
-	std::cout << "Affichage des formes géométriques" << std::endl;
-	std::cout << g1 << std::endl;
-
-	// déplacement des formes géométriques
-	g1.Translate(1, 1);
-
-	// affichage des formes géométriques
-	std::cout << "Affichage des formes géométriques après déplacement" << std::endl;
-	std::cout << g1 << std::endl;
-
-	// homothétie des formes géométriques
-	g1.homothetie(2, Vecteur2D(0, 0));
-
-	// affichage des formes géométriques
-	std::cout << "Affichage des formes géométriques après homothétie" << std::endl;
-	std::cout << g1 << std::endl;
-
-	// rotation des formes géométriques
-	g1.rotation(M_PI / 2, Vecteur2D(0, 0));
-
-	// affichage des formes géométriques
-	std::cout << "Affichage des formes géométriques après rotation" << std::endl;
-	std::cout << g1 << std::endl;
-
+	vector<Forme*>::iterator it;
+	cout << "Les formes crées a partir du fichier texte sont :" << endl << endl;
+	for (it = Vff.begin(); it != Vff.end(); ++it) {
+		if (*it != NULL) {
+			cout << **it << endl;
+		}
+	}
 	return 0;
 }

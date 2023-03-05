@@ -29,3 +29,8 @@ std::string couleurToString(Couleur couleur) {
     }
 }
 
+
+ostream& operator << (ostream& os, const Forme& f)
+{
+	return os << f.toString();
+}
