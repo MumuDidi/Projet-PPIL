@@ -1,0 +1,53 @@
+.root {
+    -fx-slate: #16171d;
+    -fx-orange: #FF6740;
+    -fx-background-color: -fx-slate;
+    -fx-white: #FFFFFF;
+
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.radio-button {
+    /* Text */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    /* Interior Spacing */
+    -fx-padding: 5px 0px 5px 0px;
+    /* Exterior Spacing */
+    -fx-border-insets: 5px;
+    /* Dimensions */
+    -fx-pref-width: 200px;
+    -fx-pref-height: 45px;
+}
+
+.radio {
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+    -fx-background-image: null;
+    -fx-background-color: -fx-slate;
+}
+
+.radio-button .dot {
+    -fx-shape: "M14.596,2.055L12.455,0C9.687,2.884,6.011,6.714,5.158,7.602L2.055,4.624L0,6.765l5.242,5.037l0.003-0.004 l0.003,0.004L14.596,2.055z";
+    -fx-scale-x: 2.5;
+    -fx-scale-y: 2.5;
+    -fx-mark-color: -fx-orange;
+    -fx-mark-highlight-color: -fx-slate;
+}
+
+.button {
+    -fx-background-color: -fx-orange;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+
+    -fx-background-insets: 5px;
+}
+
+.pane {
+    -fx-background-color: -fx-white;
+}
