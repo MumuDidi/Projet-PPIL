@@ -1,5 +1,5 @@
 #define _USE_MATH_DEFINES
-#include "Cercle.h"
+#include "../include/Cercle.h"
 #include <cmath>
 
 Cercle::Cercle(const Vecteur2D& centre, double rayon, const Couleur& couleur)

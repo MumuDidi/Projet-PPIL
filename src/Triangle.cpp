@@ -1,4 +1,4 @@
-#include "Triangle.h"
+#include "../include/Triangle.h"
 #include <cmath>
 
 Triangle::Triangle(const Vecteur2D& a, const Vecteur2D& b, const Vecteur2D& c, const Couleur& couleur)

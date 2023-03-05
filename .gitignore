@@ -1,2 +1,70 @@
 makefile
 .vscode/settings.json
+.vs/projet ppil/v16/.suo
+.vs/projet ppil/v16/Browse.VC.db
+.vs/projet ppil/v16/Browse.VC.db-shm
+.vs/projet ppil/v16/Browse.VC.db-wal
+.vs/projet ppil/v16/Browse.VC.opendb
+.vs/projet ppil/v16/ipch/AutoPCH/1d8aa13a04f7052/TRIANGLELOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/22b16b0240ade557/GROUPE.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/268f8c187b33563d/CERCLE.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/294f1ab737c22d45/CERCLELOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/370edec61d3e5cf8/MAIN.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/37f4273dc9f645b8/FORME.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/3d85746bdecc5a49/TRIANGLELOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/4526ac303ce3ea70/POLYGONE.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/51e0916f4aa3a3bf/SEGMENTLOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/593ba43dc1968d3f/POLYGONE.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/7c4bed30a07fdb1a/TRIANGLE.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/8856dff992e8c9cd/LOADER_COR.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/bf956f8fe54057e0/SEGMENTLOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/c75f77d558e5715/VECTEUR2D.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/d8f88b9f71a13c28/POLYGONELOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/e40f7681bc6cbffc/GROUPE.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/facbf9e5ee1f13ee/CERCLELOADER.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/fe28fc1942e27ba8/SEGMENT.ipch
+.vs/projet ppil/v16/ipch/AutoPCH/ff2727685c372d61/TRIANGLE.ipch
+Debug/Cercle.obj
+Debug/CercleLoader.obj
+Debug/Forme.obj
+Debug/Groupe.obj
+Debug/Loader_COR.obj
+Debug/Main.obj
+Debug/Polygone.obj
+Debug/projet ppil.exe
+Debug/projet ppil.exe.recipe
+Debug/projet ppil.ilk
+Debug/projet ppil.log
+Debug/projet ppil.pdb
+Debug/projet ppil.vcxproj.FileListAbsolute.txt
+Debug/Segment.obj
+Debug/SegmentLoader.obj
+Debug/Triangle.obj
+Debug/TriangleLoader.obj
+Debug/vc142.pdb
+Debug/Vecteur2D.obj
+Debug/projet ppil.tlog/CL.command.1.tlog
+Debug/projet ppil.tlog/CL.read.1.tlog
+Debug/projet ppil.tlog/CL.write.1.tlog
+Debug/projet ppil.tlog/link.command.1.tlog
+Debug/projet ppil.tlog/link.read.1.tlog
+Debug/projet ppil.tlog/link.write.1.tlog
+Debug/projet ppil.tlog/projet ppil.lastbuildstate
+obj/Cercle.o
+obj/CercleLoader.o
+obj/Forme.o
+obj/Groupe.o
+obj/Loader_COR.o
+obj/Main.o
+obj/Polygone.o
+obj/Segment.o
+obj/SegmentLoader.o
+obj/Triangle.o
+obj/TriangleLoader.o
+obj/Vecteur2D.o
+out
+projet ppil.sln
+projet ppil.vcxproj
+projet ppil.vcxproj.filters
+projet ppil.vcxproj.user
+.gitignore

@@ -1,4 +1,4 @@
-#include "Groupe.h"
+#include "../include/Groupe.h"
 #include <iostream>
 #include <string>
 

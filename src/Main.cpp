@@ -1,8 +1,8 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
-#include "SegmentLoader.h"
-#include "TriangleLoader.h"
-#include "CercleLoader.h"
+#include "../include/SegmentLoader.h"
+#include "../include/TriangleLoader.h"
+#include "../include/CercleLoader.h"
 
 
 #include <cmath>

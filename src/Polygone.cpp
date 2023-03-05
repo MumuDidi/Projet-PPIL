@@ -1,6 +1,6 @@
-#include "Polygone.h"
-#include "Vecteur2D.h"
-#include "Segment.h"
+#include "../include/Polygone.h"
+#include "../include/Vecteur2D.h"
+#include "../include/Segment.h"
 #include <cmath>
 #include <sstream>
 

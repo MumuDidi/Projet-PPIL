@@ -1,4 +1,4 @@
-#include "Segment.h"
+#include "../include/Segment.h"
 
 Segment::Segment(const Vecteur2D& a, const Vecteur2D& b, const Couleur& couleur)
     : Forme(couleur), a_(a), b_(b) {}

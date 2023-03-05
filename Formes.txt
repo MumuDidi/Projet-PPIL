@@ -1,4 +1,4 @@
-Triangle((0,0),(10,10),(0,-2),Blue)
-Segment((10,5),(50.3,21.3),Red)
-Cercle((35.6,52.3),12.3,Yellow)
+Triangle((0,0),(10,10),(0,-2),Blue )
+Segment((10,5),(50.3,21.3),Red )
+Cercle((35.6,52.3),12.3,Yellow )
 Patate;

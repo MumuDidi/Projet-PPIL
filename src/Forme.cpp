@@ -1,4 +1,4 @@
-#include "Forme.h"
+#include "../include/Forme.h"
 
 Forme::Forme(Couleur couleur) : couleur_(couleur) {}
 
