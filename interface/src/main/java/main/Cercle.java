@@ -5,10 +5,10 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
-public class Circle extends Shape {
+public class Cercle extends Shape {
     private double rayon;
 
-    Circle(List<Point2D> points, double rayon, Color c) {
+    Cercle(List<Point2D> points, double rayon, Color c) {
         super(points, c);
         this.rayon = rayon;
     }

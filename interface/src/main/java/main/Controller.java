@@ -3,7 +3,6 @@ package main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
-import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -11,10 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Controller {
@@ -57,6 +53,16 @@ public class Controller {
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Files", "*.*"));
         File f = fc.showSaveDialog(null);
+
+        try {
+            FileWriter fw = new FileWriter(f);
+            for (Shape shape : simple) {
+                fw.write(shape.print() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -127,7 +133,7 @@ public class Controller {
                 double rayon = points.get(0).distance(points.get(1));
                 points.remove(1);
 
-                simple.add(new Circle(points, rayon, getColor()));
+                simple.add(new Cercle(points, rayon, getColor()));
 
                 Color color = getColor();
                 gc.setFill(color);
@@ -156,7 +162,7 @@ public class Controller {
                         simple.add(new Triangle(points, getColor()));
                     }
                     if (points.size() >= 4) {
-                        simple.add(new Polygon(points, getColor()));
+                        simple.add(new Polygone(points, getColor()));
                     }
 
                     // Dessiner l'aire de la forme
@@ -166,6 +172,8 @@ public class Controller {
                 }
 
                 if(points.size() == 2) {
+                    Color color = getColor();
+                    gc.setStroke(color);
                     gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
                     simple.add(new Segment(points, getColor()));
                 }
@@ -184,7 +192,7 @@ public class Controller {
                 double rayon = points.get(0).distance(points.get(1));
 
                 points.remove(1);
-                simple2.add(new Circle(points, rayon, getColor()));
+                simple2.add(new Cercle(points, rayon, getColor()));
 
                 Color color = getColor();
                 gc.setFill(color);
@@ -213,7 +221,7 @@ public class Controller {
                         simple2.add(new Triangle(points, getColor()));
                     }
                     if (points.size() >= 4) {
-                        simple2.add(new Polygon(points, getColor()));
+                        simple2.add(new Polygone(points, getColor()));
                     }
 
                     // Dessiner l'aire de la forme
@@ -223,6 +231,8 @@ public class Controller {
                 }
 
                 if(points.size() == 2) {
+                    Color color = getColor();
+                    gc.setStroke(color);
                     gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
                     simple2.add(new Segment(points, getColor()));
                 }
