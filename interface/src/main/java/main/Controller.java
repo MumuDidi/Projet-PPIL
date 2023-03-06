@@ -57,20 +57,24 @@ public class Controller {
         if (f != null) {
             try {
                 FileWriter fw = new FileWriter(f);
-                for (Shape shape : simple) {
-                    fw.write(shape.print() + "\n");
-                }
-                for (Group group : composed) {
-                    fw.write("Groupe(");
-                    boolean first = true;
-                    for (Shape shape2 : group.getList()) {
-                        if (!first) {
-                            fw.write(",");
-                        }
-                        fw.write(shape2.print());
-                        first = false;
+                if (!simple.isEmpty()) {
+                    for (Shape shape : simple) {
+                        fw.write(shape.print() + "\n");
                     }
-                    fw.write(")\n");
+                }
+                if (!composed.isEmpty()) {
+                    for (Group group : composed) {
+                        fw.write("Groupe(");
+                        boolean first = true;
+                        for (Shape shape2 : group.getList()) {
+                            if (!first) {
+                                fw.write(",");
+                            }
+                            fw.write(shape2.print());
+                            first = false;
+                        }
+                        fw.write(")\n");
+                    }
                 }
                 fw.close();
             } catch (IOException e) {
