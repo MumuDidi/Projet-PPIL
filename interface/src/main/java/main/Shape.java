@@ -3,9 +3,7 @@ package main;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Shape {

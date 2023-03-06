@@ -117,7 +117,6 @@ public class Controller {
 
     @FXML
     void Render(ActionEvent event) {
-        System.out.println(simple);
         RadioButton selectedModeButton = (RadioButton) mode.getSelectedToggle();
         String id = selectedModeButton.getId().toString();
         if(id.equals("simple")) {
