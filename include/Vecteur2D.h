@@ -45,6 +45,6 @@ public:
 inline const Vecteur2D operator *(const double& a, const Vecteur2D& u) { return u * a; }
 inline std::ostream& operator<<(std::ostream& os, const Vecteur2D& v)
 {
-	os << "(" << v.x << ", " << v.y << ")";
+	os << "(" << v.x << "," << v.y << ")";
 	return os;
 }

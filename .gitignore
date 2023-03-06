@@ -68,3 +68,6 @@ projet ppil.vcxproj
 projet ppil.vcxproj.filters
 projet ppil.vcxproj.user
 .gitignore
+.vs/projet ppil/v16/ipch/AutoPCH/ea615b35f815fa3e/CLIENT.ipch
+Debug/client.obj
+Debug/Erreur.obj
