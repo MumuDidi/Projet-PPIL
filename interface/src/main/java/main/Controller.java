@@ -28,14 +28,14 @@ public class Controller {
     @FXML
     private Button render_composed;
 
-    private List<Point2D> points = new ArrayList<> ();
+    private List<Point2D> points = new ArrayList<>();
 
     // List of Simple Shapes
-    private List<Shape> simple = new ArrayList<> ();
+    private List<Shape> simple = new ArrayList<>();
 
     // List of Composed Shapes
-    private List<Shape> simple2 = new ArrayList<> ();
-    private List<Group> composed = new ArrayList<> ();
+    private List<Shape> simple2 = new ArrayList<>();
+    private List<Group> composed = new ArrayList<>();
 
     @FXML
     void openFile(ActionEvent event) {
@@ -43,7 +43,7 @@ public class Controller {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Files", "*.*"));
         File file = fc.showOpenDialog(null);
 
-        if(file != null) {
+        if (file != null) {
             path.setText("Selected File : " + file.getAbsolutePath());
         }
     }
@@ -87,14 +87,13 @@ public class Controller {
         double y = event.getY(); // Coordonnée y du clic de souris
 
         Point2D point = new Point2D(x, y);
-        if(!circle.isSelected()) {
+        if (!circle.isSelected()) {
             points.add(point);
 
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.setFill(Color.BLACK); // Choix de la couleur de remplissage du cercle (noir ici)
             gc.fillOval(x, y, 5, 5); // Dessin du cercle de rayon 5
-        }
-        else if (circle.isSelected() && points.size() < 2) {
+        } else if (circle.isSelected() && points.size() < 2) {
             points.add(point);
 
             GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -133,9 +132,9 @@ public class Controller {
     void Render(ActionEvent event) {
         RadioButton selectedModeButton = (RadioButton) mode.getSelectedToggle();
         String id = selectedModeButton.getId().toString();
-        if(id.equals("simple")) {
+        if (id.equals("simple")) {
 
-            if(circle.isSelected()) {
+            if (circle.isSelected()) {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
 
                 gc.setFill(Color.WHITE);
@@ -151,9 +150,7 @@ public class Controller {
                 Color color = getColor();
                 gc.setFill(color);
                 gc.fillOval(points.get(0).getX() - rayon, points.get(0).getY() - rayon, rayon * 2, rayon * 2);
-            }
-
-            else {
+            } else {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setFill(Color.WHITE);
                 for (Point2D point : points) {
@@ -184,7 +181,7 @@ public class Controller {
                     gc.fillPolygon(xPoints, yPoints, points.size());
                 }
 
-                if(points.size() == 2) {
+                if (points.size() == 2) {
                     Color color = getColor();
                     gc.setStroke(color);
                     gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
@@ -193,8 +190,8 @@ public class Controller {
             }
         }
 
-        if(id.equals("composed")) {
-            if(circle.isSelected()) {
+        if (id.equals("composed")) {
+            if (circle.isSelected()) {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
 
                 gc.setFill(Color.WHITE);
@@ -210,9 +207,7 @@ public class Controller {
                 Color color = getColor();
                 gc.setFill(color);
                 gc.fillOval(points.get(0).getX() - rayon, points.get(0).getY() - rayon, rayon * 2, rayon * 2);
-            }
-
-            else {
+            } else {
                 GraphicsContext gc = canvas.getGraphicsContext2D();
                 gc.setFill(Color.WHITE);
                 for (Point2D point : points) {
@@ -243,7 +238,7 @@ public class Controller {
                     gc.fillPolygon(xPoints, yPoints, points.size());
                 }
 
-                if(points.size() == 2) {
+                if (points.size() == 2) {
                     Color color = getColor();
                     gc.setStroke(color);
                     gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
@@ -300,5 +295,15 @@ public class Controller {
     void Composed(MouseEvent event) {
         composed.add(new Group(simple2));
         simple2.clear();
+    }
+
+    public static String[] removeEmptyStrings(String[] arr) {
+        List<String> list = new ArrayList<>();
+        for (String str : arr) {
+            if (!str.equals("")) {
+                list.add(str);
+            }
+        }
+        return list.toArray(new String[0]);
     }
 }

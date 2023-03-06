@@ -49,7 +49,7 @@ r = WSAStartup( MAKEWORD(2,0), &wsaData);       // MAKEWORD(2,0) sert à indique
 
 if (r) throw Erreur("L'initialisation a échoué");
 
-cout << "client vers le serveur de majuscule" << endl;
+cout << "client vers le serveur java" << endl;
 cout << "initialisation effectuée"<<endl;
 
 //---------------------- création socket -------------------------------------------------
@@ -77,9 +77,9 @@ cout << "socket créé" << endl;
 char adresseServeur[L];
 short portServeur;
 
-cout <<"tapez l'adresse IP du serveur de majuscule : " << endl;
+cout <<"tapez l'adresse IP du serveur java : " << endl;
 cin >> adresseServeur;
-cout <<"tapez le port du serveur du serveur de majuscule : " << endl;
+cout <<"tapez le port du serveur java : " << endl;
 cin >> portServeur;
 
 SOCKADDR_IN sockaddr; // informations concernant le serveur avec lequel on va communiquer
@@ -128,7 +128,6 @@ do
 	string msg;
 	char VraiMsg[L];
 	vector<Forme*>::iterator it;
-	cout << "Les formes crées a partir du fichier texte sont :" << endl << endl;
 	for (it = Vff.begin(); it != Vff.end(); ++it) {
 		if (*it != NULL) {
 			sscanf((*it)->toString().c_str(), "%s",	VraiMsg);
@@ -146,7 +145,7 @@ do
                                                 // reçoit au plus l octets
                                                 // en cas de succès, r contient le nombre d'octets reçus
     		if (r == SOCKET_ERROR)
-        		throw Erreur("La réception de la réponse a échoué");
+        		throw Erreur("La réception de la réponse a échouée");
 
     		char * p = strchr(reponse,'\n');
     		*p = '\0';
