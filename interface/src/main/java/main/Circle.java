@@ -8,8 +8,8 @@ import java.util.List;
 public class Circle extends Shape {
     private double rayon;
 
-    Circle(Point2D point, double rayon, Color c) {
-        super((List<Point2D>) point, c);
+    Circle(List<Point2D> points, double rayon, Color c) {
+        super(points, c);
         this.rayon = rayon;
     }
 }

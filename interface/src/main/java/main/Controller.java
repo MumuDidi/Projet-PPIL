@@ -9,7 +9,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import javafx.stage.FileChooser;
 
 import java.io.BufferedReader;
@@ -28,12 +27,18 @@ public class Controller {
     @FXML
     private ToggleGroup mode;
 
+    @FXML
+    private RadioButton circle;
+    @FXML
+    private Button render_composed;
+
     private List<Point2D> points = new ArrayList<> ();
 
     // List of Simple Shapes
     private List<Shape> simple = new ArrayList<> ();
 
     // List of Composed Shapes
+    private List<Shape> simple2 = new ArrayList<> ();
     private List<Group> composed = new ArrayList<> ();
 
     @FXML
@@ -62,14 +67,14 @@ public class Controller {
         double y = event.getY(); // Coordonnée y du clic de souris
 
         Point2D point = new Point2D(x, y);
-        if(!id.equals("circle")) {
+        if(!circle.isSelected()) {
             points.add(point);
 
             GraphicsContext gc = canvas.getGraphicsContext2D();
             gc.setFill(Color.BLACK); // Choix de la couleur de remplissage du cercle (noir ici)
             gc.fillOval(x, y, 5, 5); // Dessin du cercle de rayon 5
         }
-        else if (id.equals("circle") && points.size() < 2) {
+        else if (circle.isSelected() && points.size() < 2) {
             points.add(point);
 
             GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -106,84 +111,121 @@ public class Controller {
 
     @FXML
     void Render(ActionEvent event) {
+        System.out.println(simple);
         RadioButton selectedModeButton = (RadioButton) mode.getSelectedToggle();
         String id = selectedModeButton.getId().toString();
         if(id.equals("simple")) {
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.setFill(Color.WHITE);
-            for (Point2D point : points) {
-                gc.fillRect(point.getX(), point.getY(), 10, 10);
-            }
 
-            if (points.size() >= 2) {
-                double[] xPoints = new double[points.size()];
-                double[] yPoints = new double[points.size()];
+            if(circle.isSelected()) {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
 
-                for (int i = 0; i < points.size(); i++) {
-                    Point2D point = points.get(i);
-                    xPoints[i] = point.getX();
-                    yPoints[i] = point.getY();
+                gc.setFill(Color.WHITE);
+                for (Point2D point : points) {
+                    gc.fillRect(point.getX(), point.getY(), 10, 10);
                 }
 
-                // Ajouter la forme simple à la liste des formes simples
-                simple.add(new Shape(points, getColor()));
+                double rayon = points.get(0).distance(points.get(1));
+                points.remove(1);
 
-                // Dessiner l'aire de la forme
+                simple.add(new Circle(points, rayon, getColor()));
+
                 Color color = getColor();
                 gc.setFill(color);
-                gc.fillPolygon(xPoints, yPoints, points.size());
+                gc.fillOval(points.get(0).getX() - rayon, points.get(0).getY() - rayon, rayon * 2, rayon * 2);
             }
 
-            if(points.size() == 2) {
-                gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
+            else {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                gc.setFill(Color.WHITE);
+                for (Point2D point : points) {
+                    gc.fillRect(point.getX(), point.getY(), 10, 10);
+                }
+
+                if (points.size() > 2) {
+                    double[] xPoints = new double[points.size()];
+                    double[] yPoints = new double[points.size()];
+
+                    for (int i = 0; i < points.size(); i++) {
+                        Point2D point = points.get(i);
+                        xPoints[i] = point.getX();
+                        yPoints[i] = point.getY();
+                    }
+
+                    // Ajouter la forme simple à la liste des formes simples
+                    if (points.size() == 3) {
+                        simple.add(new Triangle(points, getColor()));
+                    }
+                    if (points.size() >= 4) {
+                        simple.add(new Polygon(points, getColor()));
+                    }
+
+                    // Dessiner l'aire de la forme
+                    Color color = getColor();
+                    gc.setFill(color);
+                    gc.fillPolygon(xPoints, yPoints, points.size());
+                }
+
+                if(points.size() == 2) {
+                    gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
+                    simple.add(new Segment(points, getColor()));
+                }
             }
-        }
-
-        if(id.equals("circle")) {
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-
-            gc.setFill(Color.WHITE);
-            for (Point2D point : points) {
-                gc.fillRect(point.getX(), point.getY(), 10, 10);
-            }
-
-            double rayon = points.get(0).distance(points.get(1));
-
-            simple.add(new Circle(points.get(0), rayon, getColor()));
-
-            Color color = getColor();
-            gc.setFill(color);
-            gc.fillOval(points.get(0).getX() - rayon, points.get(0).getY() - rayon, rayon * 2, rayon * 2);
         }
 
         if(id.equals("composed")) {
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            gc.setFill(Color.WHITE);
-            for (Point2D point : points) {
-                gc.fillRect(point.getX(), point.getY(), 10, 10);
-            }
+            if(circle.isSelected()) {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
 
-            if (points.size() >= 2) {
-                double[] xPoints = new double[points.size()];
-                double[] yPoints = new double[points.size()];
-
-                for (int i = 0; i < points.size(); i++) {
-                    Point2D point = points.get(i);
-                    xPoints[i] = point.getX();
-                    yPoints[i] = point.getY();
+                gc.setFill(Color.WHITE);
+                for (Point2D point : points) {
+                    gc.fillRect(point.getX(), point.getY(), 10, 10);
                 }
 
-                // Ajouter la forme simple à la liste des formes simples
-                simple.add(new Shape(points, getColor()));
+                double rayon = points.get(0).distance(points.get(1));
 
-                // Dessiner l'aire de la forme
+                points.remove(1);
+                simple2.add(new Circle(points, rayon, getColor()));
+
                 Color color = getColor();
                 gc.setFill(color);
-                gc.fillPolygon(xPoints, yPoints, points.size());
+                gc.fillOval(points.get(0).getX() - rayon, points.get(0).getY() - rayon, rayon * 2, rayon * 2);
             }
 
-            if(points.size() == 2) {
-                gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
+            else {
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                gc.setFill(Color.WHITE);
+                for (Point2D point : points) {
+                    gc.fillRect(point.getX(), point.getY(), 10, 10);
+                }
+
+                if (points.size() >= 2) {
+                    double[] xPoints = new double[points.size()];
+                    double[] yPoints = new double[points.size()];
+
+                    for (int i = 0; i < points.size(); i++) {
+                        Point2D point = points.get(i);
+                        xPoints[i] = point.getX();
+                        yPoints[i] = point.getY();
+                    }
+
+                    // Ajouter la forme simple à la liste des formes simples
+                    if (points.size() == 3) {
+                        simple2.add(new Triangle(points, getColor()));
+                    }
+                    if (points.size() >= 4) {
+                        simple2.add(new Polygon(points, getColor()));
+                    }
+
+                    // Dessiner l'aire de la forme
+                    Color color = getColor();
+                    gc.setFill(color);
+                    gc.fillPolygon(xPoints, yPoints, points.size());
+                }
+
+                if(points.size() == 2) {
+                    gc.strokeLine(points.get(0).getX(), points.get(0).getY(), points.get(1).getX(), points.get(1).getY());
+                    simple2.add(new Segment(points, getColor()));
+                }
             }
         }
 
@@ -198,5 +240,40 @@ public class Controller {
             gc.fillRect(point.getX(), point.getY(), 10, 10);
         }
         points.clear();
+    }
+
+    @FXML
+    void Switch1(MouseEvent event) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.WHITE);
+        for (Point2D point : points) {
+            gc.fillRect(point.getX(), point.getY(), 10, 10);
+        }
+        points.clear();
+        render_composed.setDisable(true);
+    }
+
+    @FXML
+    void Switch2(MouseEvent event) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.WHITE);
+        for (Point2D point : points) {
+            gc.fillRect(point.getX(), point.getY(), 10, 10);
+        }
+        points.clear();
+        render_composed.setDisable(false);
+    }
+
+    @FXML
+    void Clear(ActionEvent event) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
+    @FXML
+    void Composed(MouseEvent event) {
+        composed.add(new Group(simple2));
+        simple2.clear();
+        System.out.println(composed);
     }
 }

@@ -47,25 +47,26 @@
             <Button fx:id="open" mnemonicParsing="false" onAction="#openFile" text="Ouvrir" />
             <Button fx:id="save" mnemonicParsing="false" onAction="#saveFile" text="Sauvergarder" />
          <Button mnemonicParsing="false" onAction="#Render" text="Finir Forme Simple" />
-            <Button mnemonicParsing="false" text="Finir Forme Composée" />
+            <Button fx:id="render_composed" disable="true" mnemonicParsing="false" onMouseClicked="#Composed" text="Finir Forme Composée" />
+         <Button mnemonicParsing="false" onAction="#Clear" text="Effacer" />
         </children>
     </VBox>
     <VBox alignment="CENTER" layoutX="870.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
         <children>
             <Label text="Type" />
-            <RadioButton fx:id="simple" mnemonicParsing="false" onMouseClicked="#Switch" selected="true" text="Forme Simple">
+            <RadioButton fx:id="simple" mnemonicParsing="false" onMouseClicked="#Switch1" selected="true" text="Forme Simple">
                 <toggleGroup>
                     <ToggleGroup fx:id="mode" />
                 </toggleGroup>
             </RadioButton>
-         <RadioButton fx:id="composed" mnemonicParsing="false" onMouseClicked="#Switch" text="Forme Composée" toggleGroup="$mode" />
-         <RadioButton fx:id="circle" mnemonicParsing="false" onMouseClicked="#Switch" text="Cercle" toggleGroup="$mode" />
+         <RadioButton fx:id="composed" mnemonicParsing="false" onMouseClicked="#Switch2" text="Forme Composée" toggleGroup="$mode" />
+         <RadioButton fx:id="circle" mnemonicParsing="false" onMouseClicked="#Switch" text="Cercle" />
         </children>
     </VBox>
    <Label fx:id="path" text="No file chosen" GridPane.rowIndex="3" />
    <Pane maxHeight="600.0" maxWidth="600.0" prefHeight="200.0" prefWidth="200.0" styleClass="pane" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER">
       <children>
-         <Canvas fx:id="canvas" height="600.0" onMouseClicked="#Draw" width="600.0">
+         <Canvas fx:id="canvas" height="600.0" layoutX="6.0" onMouseClicked="#Draw" width="600.0">
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor>
