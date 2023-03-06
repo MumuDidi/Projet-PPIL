@@ -14,7 +14,7 @@ double Triangle::aire() const {
 
 std::string Triangle::toString() const {
     std::ostringstream os;
-    os << a_ << ";" << b_ << ";" << c_ << ";" << couleurToString(couleur_) << ";" << aire();
+    os << "Triangle[" << a_ << "," << b_ << "," << c_ << "," << couleurToString(couleur_) << "," << aire() <<"]";
     return os.str();
 }
 

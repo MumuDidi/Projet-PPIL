@@ -11,7 +11,7 @@ double Cercle::aire() const {
 
 std::string Cercle::toString() const {
     std::ostringstream oss;
-    oss << centre_ << ";" << rayon_ << ";" << couleurToString(couleur_) << ";" << aire();
+    oss << "Cercle[" << centre_ << "," << rayon_ << "," << couleurToString(couleur_) << "," << aire() << "]";
     return oss.str();
 }
 

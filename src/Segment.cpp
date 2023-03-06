@@ -9,7 +9,7 @@ double Segment::aire() const {
 
 string Segment::toString() const {
     std::ostringstream oss;
-    oss << a_ << ";" << b_ << ";" << couleurToString(couleur_);
+    oss << "Segment[" << a_ << "," << b_ << "," << couleurToString(couleur_) << "]";
     return oss.str();
 }
 
