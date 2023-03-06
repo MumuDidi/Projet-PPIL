@@ -32,7 +32,7 @@ public class Shape {
         return sb.toString();
     }
 
-    private String getColorName(Color color) {
+    String getColorName(Color color) {
         // On récupère les valeurs RGB de la couleur
         int red = (int) (color.getRed() * 255);
         int green = (int) (color.getGreen() * 255);

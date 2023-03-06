@@ -54,14 +54,28 @@ public class Controller {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Files", "*.*"));
         File f = fc.showSaveDialog(null);
 
-        try {
-            FileWriter fw = new FileWriter(f);
-            for (Shape shape : simple) {
-                fw.write(shape.print() + "\n");
+        if (f != null) {
+            try {
+                FileWriter fw = new FileWriter(f);
+                for (Shape shape : simple) {
+                    fw.write(shape.print() + "\n");
+                }
+                for (Group group : composed) {
+                    fw.write("Groupe(");
+                    boolean first = true;
+                    for (Shape shape2 : group.getList()) {
+                        if (!first) {
+                            fw.write(",");
+                        }
+                        fw.write(shape2.print());
+                        first = false;
+                    }
+                    fw.write(")\n");
+                }
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -277,12 +291,14 @@ public class Controller {
     void Clear(ActionEvent event) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        simple.clear();
+        simple2.clear();
+        composed.clear();
     }
 
     @FXML
     void Composed(MouseEvent event) {
         composed.add(new Group(simple2));
         simple2.clear();
-        System.out.println(composed);
     }
 }
